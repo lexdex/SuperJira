@@ -12,6 +12,7 @@ public class TaskManager {
         tasklist = new LinkedHashMap<>();
     }
 
+
     String readString() {
         String readString = "";
         Scanner sc = new Scanner(System.in);
@@ -101,7 +102,8 @@ public class TaskManager {
         System.out.println("There are currently "+taskCounter+" tasks");
         for (var key : tasklist.keySet()) {
             var values = tasklist.get(key);
-            System.out.println(values);
+            if (values.currentState!=State.Closed)
+            {System.out.println(values);}
         }
     }
 
