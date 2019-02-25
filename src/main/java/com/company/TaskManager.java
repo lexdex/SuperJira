@@ -4,8 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class TaskManager {
-    private int taskCounter=0;
-    private LinkedHashMap<String, Task> tasklist;
+private int taskCounter=0;
+private LinkedHashMap<String, Task> tasklist;
 
     public TaskManager() {
         taskCounter=0;
@@ -23,7 +23,7 @@ public class TaskManager {
         return readString;
     }
 
-    public void addTask() {
+    public Task addTask() {
         String taskName = "";
         Task currentTask = new Task();
 
@@ -35,7 +35,7 @@ public class TaskManager {
         System.out.println("Enter Task");
         currentTask.Task = readString();
 
-        System.out.println("Enter team member  you wish to asign task");
+        System.out.println("Enter team member  you wish to assign task");
         currentTask.AssignedTo = readString();
 
         currentTask.Id = UUID.randomUUID();
@@ -44,18 +44,22 @@ public class TaskManager {
         currentTask.currentState = State.Open;
         tasklist.put(taskName, currentTask);
         taskCounter++;
+        return currentTask;
     }
 
-    public void removeTask() {
+    public void  removeTask() {
         String toRemove = "";
+        Task t;
         System.out.println("Enter task you wish to remove");
         toRemove = readString();
         if (tasklist.containsKey(toRemove)) {
-            tasklist.remove(toRemove);
+                    tasklist.remove(toRemove);
             taskCounter--;
+
         } else {
             System.out.println("There is no such value in the task list");
         }
+
     }
 
 
@@ -98,23 +102,26 @@ public class TaskManager {
     }
 
 
-    void showllAllTasks() {
-        System.out.println("There are currently "+taskCounter+" tasks");
+  public   void showllAllTasks() {
+        int active=0;
+        System.out.println("There are currently "+taskCounter+" total tasks");
         for (var key : tasklist.keySet()) {
             var values = tasklist.get(key);
             if (values.currentState!=State.Closed)
-            {System.out.println(values);}
+            {System.out.println(values);
+            active++;}
         }
+        System.out.println("There are currently " +active+ " active tasks total");
     }
 
- public    void changeTaskState() {
+ public  void changeTaskState() {
         var toChange = readString();
         if (tasklist.containsKey(toChange)) {
             var task = tasklist.get(toChange);
             System.out.println("Task is now in state");
             System.out.println(task.currentState);
             System.out.println("State can be changed to ");
-            //   tasklist.replace(toChange,)
+
 
         } else {
             System.out.println("There is no such value in the task list");

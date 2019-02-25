@@ -1,9 +1,5 @@
 package com.company;
 
-import com.company.Interfaces.StateMove;
-import com.company.State;
-import com.company.Task;
-import com.company.TaskManager;
 import com.company.Interfaces.Command;
 
 import java.util.HashMap;
@@ -14,7 +10,7 @@ import java.util.Scanner;
 public class Menu {
 
     private Map<String, String> menu;
-    private Map<String, TaskManager> methods;
+    private Map<String, Command> methods;
     private Scanner input;
 
     public Menu() {
@@ -34,28 +30,29 @@ public class Menu {
         menu.put("6", "ChangeTaskTested");
 
 
-        //Error!
+        //Error! ?? void return type
         methods.put("1", new TaskManager().addTask());
-        methods.put("2", new TaskManager());
-        methods.put("3", new TaskManager());
-        methods.put("4", new TaskManager());
-        methods.put("5", new TaskManager());
+        methods.put("2", new TaskManager().removeTask());
+        methods.put("3", new TaskManager().showllAllTasks());
+        methods.put("4", new TaskManager().changeTaskState());
+        methods.put("5", new TaskManager().changeAssignedPerson());
+        methods.put("6", new TaskManager().changeTestedStatus());
 
     }
 
-    public void shor() {
+    public void show() {
 
-        String userINput;
+        String userInput;
         do {
             System.out.println("\n\t\t ~~MENU~~");
             menu.forEach((k, v) -> System.out.println(k + "-" + v));
             System.out.println("Q-Quit");
-            userINput = input.next();
+            userInput = input.next();
             try {
-                methods.get(userINput).
+                methods.get(userInput).
             } catch (NullPointerException e) {
             }
-        } while (!userINput.equalsIgnoreCase("Q"));
+        } while (!userInput.equalsIgnoreCase("Q"));
     }
 
 
