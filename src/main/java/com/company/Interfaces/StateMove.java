@@ -4,28 +4,26 @@ import com.company.Task;
 
 public interface StateMove {
 	
-	public default void MoveOpen(Task currentTask) {
-		currentTask.currentState=State.Open;
-		currentTask.tested=false;
+	default void moveOpen(Task currentTask) {
+		currentTask.setCurrentState(State.OPEN);
+		currentTask.setTested(false);
 	}
 
-	public default void MoveInProgress(Task currentTask) {
-
-		currentTask.currentState=State.InProgress;
-	}
-	public default void MoveReopen(Task currentTask) {
-
-		currentTask.currentState=State.ReOpened;
-	    currentTask.tested=false;
-	}
-	public default void MoveClosed(Task currentTask) {
-
-		currentTask.currentState=State.Closed;
-		currentTask.tested=true;
-	}
-	public default void MoveResolved(Task currentTask) {
-
-		currentTask.currentState=State.Resolved;
+	default void moveInProgress(Task currentTask) {
+		currentTask.setCurrentState(State.IN_PROGRESS);
 	}
 
+	default void moveReopen(Task currentTask) {
+		currentTask.setCurrentState(State.REOPENED);
+	    currentTask.setTested(false);
+	}
+
+	default void moveClosed(Task currentTask) {
+		currentTask.setCurrentState(State.CLOSED);
+		currentTask.setTested(true);
+	}
+
+	default void moveResolved(Task currentTask) {
+		currentTask.setCurrentState(State.RESOLVED);
+	}
 }

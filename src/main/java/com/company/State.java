@@ -1,9 +1,9 @@
 package com.company;
 
 public enum State {
-	Open,
-	InProgress,
-	Resolved,
-	Closed,
-	ReOpened
+	OPEN,
+	IN_PROGRESS,
+	RESOLVED,
+	CLOSED,
+	REOPENED
 }
